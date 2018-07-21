@@ -42,39 +42,69 @@
           }
         };
 
-        var features = [
+        //Test Content
+        var contentString = "<div style='float:left'>"+
+        "<img src='http://i.stack.imgur.com/g672i.png'></div><div style='float:right; padding: 10px;'>"+
+        "<b>Title</b><br/>123 Address<br/> City,Country</div>";
+
+        var outings = [
           {
-            position: new google.maps.LatLng(-33.91721, 151.22630), // Home
-            type: 'info'
+            position: new google.maps.LatLng(6.876596, 79.928737), // Home
+            type: 'info',
+            title: "Channo's",
+            description: "Cuddle Times <3"
           }, {
             position: new google.maps.LatLng(6.891557, 79.901701), // Lindi's
-            type: 'info'
+            type: 'info',
+            title: "Lindi's",
+            description: "Game Nights"
           }, {
-            position: new google.maps.LatLng(-33.91747, 151.22912), // Roccos
-            type: 'info'
+            position: new google.maps.LatLng(6.9053969,79.8923153), // Roccos
+            type: 'info',
+            title: "Rocco's",
+            description: "First Date"
           }, {
-            position: new google.maps.LatLng(-33.91910, 151.22907), // Cafe Noire
-            type: 'info'
+            position: new google.maps.LatLng(6.8933954,79.9239961), // Cafe Noire
+            type: 'info',
+            title: "Cafe Noire",
+            description: "Coffee and Sweets before Dinner."
+          },  {
+            position: new google.maps.LatLng(6.9054711,79.9099718), // Badegana Wetland Park
+            type: 'info',
+            title: "Wetland Park",
+            description: "That Sunset...!"
           }, {
-            position: new google.maps.LatLng(-33.91725, 151.23011), // Jagro ?? - 644 Sri Jayawardenepura Mawatha, Sri Jayawardenepura Kotte
-            type: 'info'
+            position: new google.maps.LatLng(6.9054711,79.9099718), // Diyatha Uyana
+            type: 'info',
+            title: "Waters Edge",
+            description: "So many memories, That First Kiss.... <3"
           }, {
-            position: new google.maps.LatLng(-33.91872, 151.23089), // Sevena Place - Anagi Nanadi's
-            type: 'info'
+            position: new google.maps.LatLng(6.902034, 79.949026), // Sevena Place - Anagi Nanadi's
+            type: 'info',
+            title: "Anagi Nandi's",
+            description: "Meeting the Cousins"
           }, {
-            position: new google.maps.LatLng(-33.91784, 151.23094), // Lakshman Kadirigama Institute
-            type: 'info'
+            position: new google.maps.LatLng(6.911338,79.866114), // Lakshman Kadirigama Institute
+            type: 'info',
+            title: "Lakshman Kadirigama Institute",
+            description: "Every Brilliant Thing"
           }, {
-            position: new google.maps.LatLng(-33.91682, 151.23149), // Savoy Premiere
-            type: 'info'
+            position: new google.maps.LatLng(6.8938023,79.865901), // Savoy Premiere
+            type: 'info',
+            title: "Savoy",
+            description: "Movie Date"
           }, {
-            position: new google.maps.LatLng(-33.91790, 151.23463), // Lionel Wendt
-            type: 'info'
+            position: new google.maps.LatLng(6.905668,79.861164), // Lionel Wendt
+            type: 'info',
+            title: "Lionel Wendt",
+            description: "Fun House"
           }, {
-            position: new google.maps.LatLng(-33.91666, 151.23468), // Noodles
-            type: 'info'
+            position: new google.maps.LatLng(6.917769,79.848522), // Noodles
+            type: 'info',
+            title: "Noodles",
+            description: "Slurpy Goodness"
           } /*, {
-            position: new google.maps.LatLng(-33.916988, 151.233640), // 
+            position: new google.maps.LatLng(-33.916988, 151.233640), //
             type: 'info'
           }, {
             position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
@@ -104,12 +134,24 @@
         ];
 
         // Create markers.
-        features.forEach(function(feature) {
+        outings.forEach(function(feature) {
           var marker = new google.maps.Marker({
             position: feature.position,
-            icon: icons[feature.type].icon,
+            //icon: icons[feature.type].icon,
+            title: feature.title,
             map: map
           });
+
+          var infowindow = new google.maps.InfoWindow({
+            content: "<div style='float:left'>"+
+            "<img src='http://i.stack.imgur.com/g672i.png'></div><div style='float:right; padding: 10px;'>"+
+            "<b>"+feature.title+"</b><br/>"+feature.description+"<br/>  </div>"
+          });
+
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+
         });
       }
     </script>
