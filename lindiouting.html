@@ -39,37 +39,43 @@
           },
           info: {
             icon: iconBase + 'info-i_maps.png'
+          },
+          dining: {
+            icon: iconBase + 'dining.png'
           }
         };
 
         //Test Content
-        var contentString = "<div style='float:left'>"+
-        "<img src='http://i.stack.imgur.com/g672i.png'></div><div style='float:right; padding: 10px;'>"+
-        "<b>Title</b><br/>123 Address<br/> City,Country</div>";
+        // var contentString = "<div style='float:left'>"+
+        // "<img src='http://i.stack.imgur.com/g672i.png'></div><div style='float:right; padding: 10px;'>"+
+        // "<b>Title</b><br/>123 Address<br/> City,Country</div>";
 
         var outings = [
           {
             position: new google.maps.LatLng(6.876596, 79.928737), // Home
             type: 'info',
             title: "Channo's",
+            image: 'images/channos.jpg',
             description: "Cuddle Times <3"
           }, {
             position: new google.maps.LatLng(6.891557, 79.901701), // Lindi's
             type: 'info',
             title: "Lindi's",
+            image: 'images/lindis_valentines.jpeg',
             description: "Game Nights"
           }, {
-            position: new google.maps.LatLng(6.9053969,79.8923153), // Roccos
-            type: 'info',
+            position: new google.maps.LatLng(6.90504,79.894297), // Roccos
+            type: 'dining',
             title: "Rocco's",
             description: "First Date"
           }, {
             position: new google.maps.LatLng(6.8933954,79.9239961), // Cafe Noire
             type: 'info',
             title: "Cafe Noire",
+            image: 'images/cafenoire.jpg',
             description: "Coffee and Sweets before Dinner."
           },  {
-            position: new google.maps.LatLng(6.9054711,79.9099718), // Badegana Wetland Park
+            position: new google.maps.LatLng(6.891603, 79.910633), // Badegana Wetland Park
             type: 'info',
             title: "Wetland Park",
             description: "That Sunset...!"
@@ -102,15 +108,22 @@
             position: new google.maps.LatLng(6.917769,79.848522), // Noodles
             type: 'info',
             title: "Noodles",
+            image: 'images/noodles.jpg',
             description: "Slurpy Goodness"
+          }, {
+            position: new google.maps.LatLng(6.9200897,79.845677), // Nihonbashi 11th May
+            type: 'info',
+            title: "Nihonbashi",
+            image: 'images/nihonbashi_11th_May.jpg',
+            description: "Japanese Cuisine"
+          }, {
+            position: new google.maps.LatLng(6.6761263,79.9191163), // Kalutara Hotel
+            type: 'info',
+            title: "Taprobana",
+            image: 'images/kalutara_hotel.jpg',
+            description: "Moments to our selves..."
           } /*, {
-            position: new google.maps.LatLng(-33.916988, 151.233640), //
-            type: 'info'
-          }, {
-            position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
-            type: 'parking'
-          }, {
-            position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
+            position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496), //Boardwalk - Valentines
             type: 'parking'
           }, {
             position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
@@ -142,9 +155,17 @@
             map: map
           });
 
+
+          if(feature.image != null) {
+            var imagePlaceholder = feature.image;
+          } else {
+            var imagePlaceholder = 'http://i.stack.imgur.com/g672i.png';
+          }
+
+
           var infowindow = new google.maps.InfoWindow({
             content: "<div style='float:left'>"+
-            "<img src='http://i.stack.imgur.com/g672i.png'></div><div style='float:right; padding: 10px;'>"+
+            "<img src="+imagePlaceholder+" height='100' width='100' ></div><div style='float:right; padding: 10px;'>"+
             "<b>"+feature.title+"</b><br/>"+feature.description+"<br/>  </div>"
           });
 
